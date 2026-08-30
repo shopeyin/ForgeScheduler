@@ -73,18 +73,50 @@ namespace ForgeScheduler.Data
         public async Task MarkCompletedAsync(int id)
         {
             const string sql = """
-        UPDATE jobs
-        SET
-            status = 'completed',
-            locked_at = NULL,
-            locked_by = NULL
-        WHERE id = @Id;
-        """;
+                    UPDATE jobs
+                    SET
+                        status = 'completed',
+                        locked_at = NULL,
+                        locked_by = NULL
+                    WHERE id = @Id;
+                    """;
 
             await _db.ExecuteAsync(sql, new
             {
                 Id = id
             });
+        }
+
+
+        public async Task RetryJobAsync(int id, DateTime nextAttempt)
+        {
+            const string sql = """
+                UPDATE jobs
+                SET
+                    status = 'pending',
+                    attempts = attempts + 1,
+                    scheduled_at = @NextAttempt
+                WHERE id = @Id;
+                """;
+
+            await _db.ExecuteAsync(sql, new
+            {
+                Id = id,
+                NextAttempt = nextAttempt
+            });
+        }
+
+        public async Task MarkPermanentlyFailedAsync(int id)
+        {
+            const string sql = """
+        UPDATE jobs
+        SET
+            status = 'failed',
+            attempts = attempts + 1
+        WHERE id = @Id;
+        """;
+
+            await _db.ExecuteAsync(sql, new { Id = id });
         }
     }
 }
