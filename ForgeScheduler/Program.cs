@@ -1,7 +1,6 @@
-using ForgeScheduler.BackgroundServices;
-using ForgeScheduler.Data;
-using Npgsql;
-using System.Data;
+
+using ForgeScheduler.Application.Jobs;
+using ForgeScheduler.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,14 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IDbConnection>(sp =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-    return new NpgsqlConnection(connectionString);
-});
-
-builder.Services.AddScoped<JobRepository>();
-builder.Services.AddHostedService<JobWorker>();
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<JobDispatcher>();
 
 var app = builder.Build();
 

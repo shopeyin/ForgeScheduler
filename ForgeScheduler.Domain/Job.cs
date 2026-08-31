@@ -1,4 +1,4 @@
-﻿namespace ForgeScheduler.Models
+﻿namespace ForgeScheduler.Domain
 {
     public class Job
     {
@@ -17,5 +17,7 @@
         public DateTime? LockedAt { get; set; }
 
         public string? LockedBy { get; set; }
+
+        public DateTime? LastSuccessfullyCompletedAt { get; set; }
     }
 }

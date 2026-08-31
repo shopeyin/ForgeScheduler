@@ -1,9 +1,10 @@
 ﻿using Dapper;
-using ForgeScheduler.Models;
+using ForgeScheduler.Application.Abstractions;
+using ForgeScheduler.Domain;
 using System.Data;
-namespace ForgeScheduler.Data
+namespace ForgeScheduler.Infrastructure.Persistence
 {
-    public class JobRepository
+    public class JobRepository : IJobRepository
     {
         private readonly IDbConnection _db;
 
@@ -52,6 +53,16 @@ namespace ForgeScheduler.Data
             return await _db.QueryAsync<Job>(sql);
         }
 
+        public async Task MarkProcessingAsync(int id)
+        {
+            const string sql = """
+            UPDATE jobs
+            SET status = 'running'
+            WHERE id = @Id;
+            """;
+
+            await _db.ExecuteAsync(sql, new { Id = id });
+        }
         public async Task LockJobAsync(int id, string workerId)
         {
             const string sql = """
@@ -76,6 +87,7 @@ namespace ForgeScheduler.Data
                     UPDATE jobs
                     SET
                         status = 'completed',
+                        last_successfully_completed_at = NOW(),
                         locked_at = NULL,
                         locked_by = NULL
                     WHERE id = @Id;
@@ -109,14 +121,17 @@ namespace ForgeScheduler.Data
         public async Task MarkPermanentlyFailedAsync(int id)
         {
             const string sql = """
-        UPDATE jobs
-        SET
-            status = 'failed',
-            attempts = attempts + 1
-        WHERE id = @Id;
-        """;
+                UPDATE jobs
+                SET
+                    status = 'failed',
+                    attempts = attempts + 1
+                WHERE id = @Id;
+                """;
 
             await _db.ExecuteAsync(sql, new { Id = id });
         }
+
+        
+
     }
 }
