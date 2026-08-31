@@ -1,6 +1,7 @@
-﻿using ForgeScheduler.Data;
-using ForgeScheduler.Models;
-using Microsoft.AspNetCore.Http;
+﻿
+using ForgeScheduler.Api.Dtos.Jobs;
+using ForgeScheduler.Application.Abstractions;
+using ForgeScheduler.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForgeScheduler.Controllers
@@ -10,17 +11,23 @@ namespace ForgeScheduler.Controllers
     public class JobsController : ControllerBase
     {
         private readonly ILogger<JobsController> _logger;
-        private readonly JobRepository _jobRepository;
+        private readonly IJobRepository _jobRepository;
 
-        public JobsController(ILogger<JobsController> logger, JobRepository jobRepository)
+        public JobsController(ILogger<JobsController> logger, IJobRepository jobRepository)
         {
             _logger = logger;
             _jobRepository = jobRepository;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateJob(Job job)
+        public async Task<IActionResult> CreateJob(CreateJobRequest request)
         {
+            var job = new Job
+            {
+                Payload = request.Payload,
+                ScheduledAt = request.ScheduledAt
+            };
+
             var id = await _jobRepository.CreateJobAsync(job);
 
             return Ok(new

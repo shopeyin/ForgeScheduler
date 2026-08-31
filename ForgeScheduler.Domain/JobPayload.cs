@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ForgeScheduler.Models
+namespace ForgeScheduler.Domain
 {
     public class JobPayload
     {

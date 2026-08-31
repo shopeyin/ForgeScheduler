@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.37411.7 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgeScheduler", "ForgeScheduler\ForgeScheduler.csproj", "{D157606A-1B74-481E-8896-9515155AC317}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgeScheduler.Api", "ForgeScheduler\ForgeScheduler.Api.csproj", "{D157606A-1B74-481E-8896-9515155AC317}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgeScheduler.Application", "ForgeScheduler.Application\ForgeScheduler.Application.csproj", "{97723159-1485-4A7D-8703-1085A6C86B62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgeScheduler.Domain", "ForgeScheduler.Domain\ForgeScheduler.Domain.csproj", "{B668CE00-5CFE-4473-AC65-FC55DC0E2F00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgeScheduler.Infrastructure", "ForgeScheduler.Infrastructure\ForgeScheduler.Infrastructure.csproj", "{C91E4810-6210-4992-9B2C-B284EEF20157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForgeScheduler.Worker", "ForgeScheduler.Worker\ForgeScheduler.Worker.csproj", "{FBFC0B2E-B5DC-42D8-A943-1650183C9EDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{D157606A-1B74-481E-8896-9515155AC317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D157606A-1B74-481E-8896-9515155AC317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D157606A-1B74-481E-8896-9515155AC317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97723159-1485-4A7D-8703-1085A6C86B62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97723159-1485-4A7D-8703-1085A6C86B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97723159-1485-4A7D-8703-1085A6C86B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97723159-1485-4A7D-8703-1085A6C86B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B668CE00-5CFE-4473-AC65-FC55DC0E2F00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B668CE00-5CFE-4473-AC65-FC55DC0E2F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B668CE00-5CFE-4473-AC65-FC55DC0E2F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B668CE00-5CFE-4473-AC65-FC55DC0E2F00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C91E4810-6210-4992-9B2C-B284EEF20157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91E4810-6210-4992-9B2C-B284EEF20157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91E4810-6210-4992-9B2C-B284EEF20157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C91E4810-6210-4992-9B2C-B284EEF20157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBFC0B2E-B5DC-42D8-A943-1650183C9EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBFC0B2E-B5DC-42D8-A943-1650183C9EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBFC0B2E-B5DC-42D8-A943-1650183C9EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBFC0B2E-B5DC-42D8-A943-1650183C9EDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

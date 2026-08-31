@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.79" />
-    <PackageReference Include="Npgsql" Version="10.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ForgeScheduler.Application\ForgeScheduler.Application.csproj" />
+    <ProjectReference Include="..\ForgeScheduler.Domain\ForgeScheduler.Domain.csproj" />
+    <ProjectReference Include="..\ForgeScheduler.Infrastructure\ForgeScheduler.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
